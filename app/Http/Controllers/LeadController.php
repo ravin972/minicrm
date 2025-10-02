@@ -50,7 +50,7 @@ class LeadController extends Controller
         $sortOrder = $request->get('sort_order', 'desc');
         $query->orderBy($sortBy, $sortOrder);
 
-        $leads = $query->paginate(10)->withQueryString();
+        $leads = $query->paginate(10)->appends($request->query());
 
         // Get filter options
         $customers = Customer::orderBy('name')->get();

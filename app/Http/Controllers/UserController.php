@@ -42,7 +42,7 @@ class UserController extends Controller
         $sortOrder = $request->get('sort_order', 'desc');
         $query->orderBy($sortBy, $sortOrder);
 
-        $users = $query->paginate(10)->withQueryString();
+        $users = $query->paginate(10)->appends($request->query());
 
         return view('users.index', compact('users'));
     }

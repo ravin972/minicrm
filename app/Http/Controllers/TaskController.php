@@ -59,7 +59,7 @@ class TaskController extends Controller
         $sortOrder = $request->get('sort_order', 'desc');
         $query->orderBy($sortBy, $sortOrder);
 
-        $tasks = $query->paginate(10)->withQueryString();
+        $tasks = $query->paginate(10)->appends($request->query());
 
         // Get filter options
         $leads = Lead::orderBy('title')->get();
